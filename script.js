@@ -464,8 +464,11 @@ function updateDisplay() {
         ) * 100;
 
 
-    progressBar.style.height =
-        `${percentage}%`;
+    progressBar.style.setProperty(
+        "height",
+        `${percentage}%`,
+        "important"
+    );
 
     progressBar.style.width =
         "100%";

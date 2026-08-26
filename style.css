@@ -1370,8 +1370,9 @@ body {
 
         flex-direction: row !important;
 
-        width: max-content !important;
+        width: 100% !important;
 
+        justify-content: center !important;
         gap: 3px !important;
     }
 

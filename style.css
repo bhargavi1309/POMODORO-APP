@@ -1146,8 +1146,7 @@ body {
     position: absolute !important;
 
     left: 0 !important;
-    top: calc(50% + 92px) !important;
-    bottom: auto !important;
+    bottom: 0 !important;
 
     width: 100% !important;
     height: 100% !important;
@@ -1170,7 +1169,8 @@ body {
 
     left: auto !important;
     right: 8% !important;
-    bottom: 0 !important;
+    top: calc(50% + 92px) !important;
+    bottom: auto !important;
 
     transform: none !important;
 

@@ -1364,9 +1364,9 @@ body {
     /* Session options become horizontal at top */
     .session-tabs {
         left: 50% !important;
-        top: 18px !important;
+        top: 30% !important;
 
-        transform: translateX(-50%) !important;
+        transform: translate(-50%, -50%) !important;
 
         flex-direction: row !important;
 
@@ -1388,7 +1388,7 @@ body {
     .session-label {
         left: 50% !important;
         right: auto !important;
-        top: 58px !important;
+        top: 39% !important;
         bottom: auto !important;
 
         transform: translateX(-50%) !important;
@@ -1401,8 +1401,8 @@ body {
     .timer {
         left: 50% !important;
         right: auto !important;
-        top: auto !important;
-        bottom: 75px !important;
+        top: 50% !important;
+        bottom: auto !important;
 
         transform: translateX(-50%) !important;
 
@@ -1429,8 +1429,8 @@ body {
     .timer-controls {
         left: 50% !important;
         right: auto !important;
-        top: auto !important;
-        bottom: 2px !important;
+        top: 63% !important;
+        bottom: auto !important;
 
         transform: translateX(-50%) !important;
 
@@ -1457,8 +1457,8 @@ body {
     .pomodoro-counter {
         left: 50% !important;
         right: auto !important;
-        top: auto !important;
-        bottom: -28px !important;
+        top: 70% !important;
+        bottom: auto !important;
 
         transform: translateX(-50%) !important;
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = "focusflow-v9";
+const CACHE_NAME = "focusflow-v10";
 
 
 const FILES_TO_CACHE = [

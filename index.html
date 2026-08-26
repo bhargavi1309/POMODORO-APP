@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#111111"
+    >
+
+    <meta
+        name="description"
+        content="FocusFlow - A customizable Pomodoro productivity timer"
+    >
+
+    <title>FocusFlow</title>
+
+    <link rel="stylesheet" href="style.css?v=7">
+
+    <link rel="manifest" href="manifest.json">
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="icons/icon-192.png"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         BACKGROUND
+    ========================================== -->
+
+    <div class="background">
+
+        <!-- Desktop background video -->
+
+        <video
+            id="desktopBackground"
+            class="background-video desktop-video"
+            autoplay
+            muted
+            loop
+            playsinline
+        ></video>
+
+
+        <!-- Mobile background video -->
+
+        <video
+            id="mobileBackground"
+            class="background-video mobile-video"
+            autoplay
+            muted
+            loop
+            playsinline
+        ></video>
+
+
+        <!-- Fallback image -->
+
+        <div
+            id="backgroundImage"
+            class="background-image"
+        ></div>
+
+
+        <!-- Dark overlay -->
+
+        <div class="background-overlay"></div>
+
+    </div>
+
+
+    <!-- =========================================
+         MAIN APP
+    ========================================== -->
+
+    <main class="app">
+
+
+        <!-- =========================================
+             HEADER
+        ========================================== -->
+
+        <header class="top-bar">
+
+            <div class="logo">
+
+                <span class="logo-icon">
+                    ◷
+                </span>
+
+                <span>
+                    FocusFlow
+                </span>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    id="fullscreenBtn"
+                    class="icon-btn"
+                    title="Fullscreen"
+                >
+                    ⛶
+                </button>
+
+
+                <button
+                    id="settingsBtn"
+                    class="icon-btn"
+                    title="Settings"
+                >
+                    ⚙
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             TIMER SECTION
+        ========================================== -->
+
+        <section class="timer-section">
+
+
+            <!-- =========================================
+                 TIMER CARD
+            ========================================== -->
+
+            <div class="timer-card">
+
+
+                <!-- Session tabs -->
+
+                <div class="session-tabs">
+
+                    <button
+                        class="session-tab active"
+                        data-session="work"
+                    >
+                        Focus
+                    </button>
+
+
+                    <button
+                        class="session-tab"
+                        data-session="shortBreak"
+                    >
+                        Short Break
+                    </button>
+
+
+                    <button
+                        class="session-tab"
+                        data-session="longBreak"
+                    >
+                        Long Break
+                    </button>
+
+                </div>
+
+
+                <!-- Session label -->
+
+                <div
+                    id="sessionLabel"
+                    class="session-label"
+                >
+                    Focus Time
+                </div>
+
+
+                <!-- Timer -->
+
+                <div
+                    id="timer"
+                    class="timer"
+                >
+                    25:00
+                </div>
+
+
+                <!-- Progress -->
+
+                <div class="progress-container">
+
+                    <div
+                        id="progressBar"
+                        class="progress-bar"
+                    ></div>
+
+                </div>
+
+
+                <!-- Controls -->
+
+                <div class="timer-controls">
+
+                    <button
+                        id="resetBtn"
+                        class="secondary-btn"
+                        title="Reset timer"
+                    >
+                        ↻
+                    </button>
+
+
+                    <button
+                        id="startBtn"
+                        class="start-btn"
+                    >
+                        Start
+                    </button>
+
+
+                    <button
+                        id="skipBtn"
+                        class="secondary-btn"
+                        title="Skip session"
+                    >
+                        ⏭
+                    </button>
+
+                </div>
+
+
+                <!-- Pomodoro count -->
+
+                <div class="pomodoro-counter">
+
+                    <span>
+                        Pomodoros completed
+                    </span>
+
+                    <strong id="pomodoroCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 TASK
+            ========================================== -->
+
+            <div class="task-card">
+
+                <label for="taskInput">
+                    What are you working on?
+                </label>
+
+
+                <div class="task-input-container">
+
+                    <input
+                        type="text"
+                        id="taskInput"
+                        placeholder="Enter your task..."
+                        maxlength="100"
+                    >
+
+
+                    <button
+                        id="clearTaskBtn"
+                        title="Clear task"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             INSTALL
+        ========================================== -->
+
+        <div
+            id="installContainer"
+            class="install-container hidden"
+        >
+
+            <p>
+                Install FocusFlow as an app.
+            </p>
+
+
+            <button id="installBtn">
+                Install
+            </button>
+
+        </div>
+
+
+
+        <!-- =========================================
+             SETTINGS
+        ========================================== -->
+
+        <div
+            id="settingsModal"
+            class="modal hidden"
+        >
+
+            <div class="modal-content">
+
+
+                <div class="modal-header">
+
+                    <h2>
+                        Timer Settings
+                    </h2>
+
+
+                    <button
+                        id="closeSettingsBtn"
+                        class="close-btn"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+
+                <!-- Focus -->
+
+                <div class="setting-row">
+
+                    <label>
+                        Focus duration
+                    </label>
+
+
+                    <div class="number-input">
+
+                        <input
+                            type="number"
+                            id="workDuration"
+                            min="1"
+                            max="180"
+                        >
+
+                        <span>
+                            min
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Short Break -->
+
+                <div class="setting-row">
+
+                    <label>
+                        Short break
+                    </label>
+
+
+                    <div class="number-input">
+
+                        <input
+                            type="number"
+                            id="shortBreakDuration"
+                            min="1"
+                            max="60"
+                        >
+
+                        <span>
+                            min
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Long Break -->
+
+                <div class="setting-row">
+
+                    <label>
+                        Long break
+                    </label>
+
+
+                    <div class="number-input">
+
+                        <input
+                            type="number"
+                            id="longBreakDuration"
+                            min="1"
+                            max="120"
+                        >
+
+                        <span>
+                            min
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Alarm -->
+
+                <div class="setting-row">
+
+                    <label>
+                        Alarm
+                    </label>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="soundToggle"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+
+                <div class="settings-note">
+
+                    Backgrounds automatically change
+                    according to the current session.
+
+                </div>
+
+
+
+                <button
+                    id="saveSettingsBtn"
+                    class="save-btn"
+                >
+                    Save Settings
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================
+         ALARM
+    ========================================== -->
+
+    <audio
+        id="alarmSound"
+        preload="auto"
+    >
+
+        <source
+            src="sounds/alarm.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+
+
+    <script src="script.js?v=8"></script>
+
+</body>
+
+</html>
